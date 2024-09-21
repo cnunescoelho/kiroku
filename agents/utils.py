@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Claudionor Coelho Jr, Fabrício J V Ceolin
+# Copyright (c) 2024 Claudionor Coelho Jr, Fabrício José Vieira Ceolin, Luiza Nacif Coelho
 def is_interactive():
     import __main__ as main
     return not hasattr(main, '__file__')
