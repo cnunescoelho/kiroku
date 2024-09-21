@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Claudionor Coelho Jr
+# Copyright (c) 2024 Claudionor Coelho Jr, Fabrício J V Ceolin
 
 from nltk import sent_tokenize
 import numpy as np

@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Claudionor Coelho Jr
+# Copyright (c) 2024 Claudionor Coelho Jr, Fabrício J V Ceolin
 
 import json
 from langchain_core.messages import AnyMessage, SystemMessage, HumanMessage, AIMessage, ChatMessage

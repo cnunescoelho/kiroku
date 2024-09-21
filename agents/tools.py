@@ -1,4 +1,4 @@
-# Copyright (c) 2024 Claudionor Coelho Jr
+# Copyright (c) 2024 Claudionor Coelho Jr, Fabrício J V Ceolin
 
 from langchain_community.utilities import WikipediaAPIWrapper, ArxivAPIWrapper, GoogleSerperAPIWrapper
 from langchain_experimental.utilities import PythonREPL
