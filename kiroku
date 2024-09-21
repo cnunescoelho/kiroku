@@ -8,7 +8,6 @@ from fire import Fire
 import gradio as gr
 from IPython.display import display, Image
 from langchain_openai import ChatOpenAI
-from langchain_anthropic import ChatAnthropic
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langchain_core.runnables.graph import CurveStyle, MermaidDrawMethod
 from langgraph.graph import StateGraph, START, END
@@ -38,11 +37,9 @@ class DocumentWriter:
         self.set_thread_id(1)
         models = {
             "openai": "gpt-4o-mini",
-            "openai++": "gpt-4o",
-            "anthropic": "claude-3-opus-20240229",
-            "anthropic++": "claude-3-5-sonnet-20240620"
+            "openai++": "gpt-4o"
         }
-        assert model_name in ["openai", "openai++", "anthropic", "anthropic++"]
+        assert model_name in ["openai", "openai++"]
         model = models.get(model_name, "openai")
         # if user did not specify the beefed up models upfront, we try to
         # use cheaper models whenever possible for simpler tasks.
@@ -51,11 +48,6 @@ class DocumentWriter:
                 model=model, temperature=temperature)
             self.model_p = ChatOpenAI(
                 model=models["openai++"], temperature=temperature)
-        elif model_name in ["anthropic", "anthropic++"]:
-            self.model_m = ChatAnthropic(
-                model_name=model, temperature=temperature)
-            self.model_p = ChatAnthropic(
-                model_name=models["anthropic++"], temperature=temperature)
         self.state_nodes = {
             node.name : node
             for node in [
