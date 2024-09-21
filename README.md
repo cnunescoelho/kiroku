@@ -1,3 +1,5 @@
+![kiroku](https://github.com/user-attachments/assets/0a254a3d-2358-40dc-91c1-ff16fa09c6f4)
+ 
 # Introduction
 
 Kiroku is a multi-agent system that helps you organize and write documents.  
