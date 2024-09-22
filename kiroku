@@ -350,7 +350,7 @@ class WriterUI:
 
     def atlas_message(self, state):
         """
-        Returns the Atlas message for a given state.
+        Returns the Echo message for a given state.
         :param state: Next state of the multi-agent system.
         :return:
         """
@@ -380,7 +380,7 @@ class WriterUI:
     def initial_step(self):
         """
         Performs initial step, in which we need to providate a staet to the graph.
-        :return: draft and Atlas message.
+        :return: draft and Echo message.
         """
         state_values = deepcopy(self.state_values)
         if self.suggest_title:
@@ -531,10 +531,10 @@ class WriterUI:
                     file = gr.File(file_types=["yaml"], scale=1)
                     js = gr.JSON(scale=5)
             with gr.Tab("Document Writing"):
-                out = gr.Textbox(label="Atlas")
+                out = gr.Textbox(label="Echo")
                 inp = gr.Textbox(
                     placeholder="Instruction",
-                    label="Smith")
+                    label="Rider")
                 markdown = gr.Markdown("")
                 doc = gr.Button("Save")
             with gr.Tab("References") as self.ref_block:
