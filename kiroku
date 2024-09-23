@@ -269,7 +269,7 @@ class DocumentWriter:
             )
         )
 
-class WriterUI:
+class KirokuUI:
     def __init__(self):
         self.first = True
         self.next_state = -1
@@ -525,7 +525,7 @@ class WriterUI:
     def create_ui(self):
         with gr.Blocks(
                 theme=gr.themes.Default(),
-                fill_height=True) as self.writer_agent:
+                fill_height=True) as self.kiroku_agent:
             with gr.Tab("Initial Instructions"):
                 with gr.Row():
                     file = gr.File(file_types=["yaml"], scale=1)
@@ -565,23 +565,25 @@ class WriterUI:
                 [markdown, out, submit_ref_list])
 
     def launch_ui(self):
-        working_dir = os.environ.get("WRITER_PROJECT_DIRECTORY", os.getcwd())
+        working_dir = os.environ.get("KIROKU_PROJECT_DIRECTORY", os.getcwd())
         try:
             os.chdir(working_dir)
         except:
             logging.warning(f"... directory {working_dir} does not exist")
             os.mkdir(working_dir)
         self.images = working_dir + "/images"
+        logging.warning(
+            f"... using directory {working_dir}/images to store images")
         try:
             os.mkdir(self.images)
         except:
             pass
-        self.writer_agent.launch(allowed_paths=[self.images])
+        self.kiroku_agent.launch(allowed_paths=[self.images])
 
 def run():
-    writer = WriterUI()
-    writer.create_ui()
-    writer.launch_ui()
+    kiroku = KirokuUI()
+    kiroku.create_ui()
+    kiroku.launch_ui()
 
 if __name__ == "__main__":
     n_errors = 0
