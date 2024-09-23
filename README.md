@@ -30,12 +30,21 @@ To get an OPENAI_API_KEY, you can check https://platform.openai.com/docs/quickst
 
 To get a TAVILY_API_KEY, you can check the site https://app.tavily.com/sign-in, and click "Sign in".
 
+You may want to use a tool like `direnv` to manage the environment variables `OPENAI_API_KEY` and `TAVILI_API_KEY` on a per-directory basis. 
+This will help you automatically load these variables when you are working within the Kiroku project directory. 
+`direnv` supports Linux, macOS, and Windows through WSL.
+
 # Installation
 
-You must install `requirements.tx` to be able to run Kiroku.
+Kiroku supports Python between versions 3.7 and 3.11.
+
+### 1. Set up a virtual environment
+You can use Python’s `venv` module to create an isolated environment for dependencies. This ensures a clean environment and avoids conflicts with system packages.
 
 ```shell
 cd kiroku
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 

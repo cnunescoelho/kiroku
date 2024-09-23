@@ -1,6 +1,7 @@
-# Copyright (c) 2024 Claudionor Coelho Jr
+# Copyright (c) 2024 Claudionor Coelho Jr, Fabrício José Vieira Ceolin, Luiza Nacif Coelho
 
 import json
+import re
 from langchain_core.messages import AnyMessage, SystemMessage, HumanMessage, AIMessage, ChatMessage
 from langchain_core.pydantic_v1 import BaseModel, Field
 from typing import TypedDict, List, Set
