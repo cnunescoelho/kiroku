@@ -24,7 +24,7 @@ credit to them the original code that I used as a reference.
 
 # Before You Run
 
-To run Kiroku, you need an OPENAI_API_KEY and a TAVILI_API_KEY.
+To run Kiroku, you need an OPENAI_API_KEY and a TAVILY_API_KEY.
 
 To get an OPENAI_API_KEY, you can check https://platform.openai.com/docs/quickstart .
 
