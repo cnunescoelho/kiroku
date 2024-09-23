@@ -75,6 +75,7 @@ number_of_paragraphs:
   "Architecture of Kiroku": 4
   "Results": 4
   "Conclusions": 3
+  -"References": 0
 ```
 - `hypothesis` tells Kiroku whether you want to establish something to be good or bad, and it will define the message.
 - `instructions`: as you interact with the document giving instructions like "First paragraph of Introduction should
@@ -88,11 +89,79 @@ this time, so you will not see them. I usually put `\n\n` after each instruction
 (please note that setting this document to `1`, it means no revision).
 - `temperature` is the temperature of the LLM (usually I set it to a small number).
 
+The final YAML is given below:
+
+```yaml
+title: "Writing Masterpieces when You Become the Adivisor"
+suggest_title: True
+generate_citations: True
+type_of_document: "research seminal paper"
+area_of_paper: "AI and Computer Science"
+section_names:
+- Introduction
+- Related Work
+- Architecture
+- Results
+- Conclusions
+- References
+number_of_paragraphs:
+  "Introduction": 4
+  "Related Work": 7
+  "Architecture": 4
+  "Results": 4
+  "Conclusions": 3
+  "References": 0
+hypothesis: "
+We want to show in this paper that we turn paper writers into 'advisors'
+and a multi-agent system into a 'advisee' who will observe the instructions by,
+interactively turning a course draft of a paper into a publication ready
+document.
+"
+instructions: "
+For the following instructions, you should use your own words.
+\n\n
+The section 'Introduction', you should focus on:
+\n
+- In the first paragraph, you should discuss that the world has change
+since the release of ChatGPT.
+\n
+In the section 'Architecture', you should show the picture
+'/file=images/multi-agent.jpeg' to discuss we write a paper by defining a
+title and hypothesis, writing topic sentences, expanding topic sentences into
+paragraphs, writing the paragraphs, and finally reviewing what you have written.
+"
+results: "
+This is an example on how you can put a results table.
+<table>
+  <tr>
+      <td> </td>
+      <td> Normal Text Rate</td>
+      <td> Kiroku Rate</td>
+  </tr>
+  <tr>
+    <td> Experiment 1</td>
+    <td> 3 </td>
+    <td> 9 </td>
+  </tr>
+  <tr>
+    <td> Experiment 2</td>
+    <td> 5 </td>
+    <td> 10 </td>
+  </tr>
+</table>
+"
+references:
+- "Harrison Chase, Rotem Weiss. AI Agents in LangGraph. https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph"
+number_of_queries: 8
+max_revisions: 1
+temperature: 0.1
+```
+
 There is a script `check_yaml` that checks if the YAML file is consistent and it will not crash Kiroku.
 
-I recommend putting all YAML files right now in the `kikoku/proj` direcotry. All images should be in `kiroku/proj/images`. Because of a 
-limitation of Gradio, you need to specify images in the `instructions` or `hypothesis` as `'/file=images/<your-image-file>'` such as
-in the example `/file=images/multi-agent.jpeg`.
+I recommend putting all YAML files right now in the `kikoku/proj` direcotry. All images should be in `kiroku/proj/images`. 
+
+Because of a limitation of Gradio, you need to specify images as `'/file=images/<your-image-file>'` such as in the example `/file=images/multi-agent.jpeg`.
 
 # Running
 
@@ -100,8 +169,14 @@ I recommend running writer as:
 
 ```shell
 cd {where Kiroku directory is located}
-WRITER_PROJECT_DIRECTORY=`pwd`/proj ./kiroku
+KIROKU_PROJECT_DIRECTORY=`pwd`/proj ./kiroku
 ```
+
+Go to your preferred browser and open `localhost:7860`.
+
+As for instructions, you can try `I liked title 2` or `I liked the original title`.
+
+Whenever you give an instructions you really liked, remember to add it to the `instructions` field.
 
 # License
 
@@ -116,6 +191,14 @@ Apache License 2.0 (see LICENSE.txt)
 <p id=1> 1. https://www.youtube.com/watch?v=om7VpIK90vE</p>
 
 <p id=2> 2. Harrison Chase, Rotem Weiss. AI Agents in LangGraph. https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph</p>
+
+# Authors
+
+Claudionor N. Coelho Jr (https://www.linkedin.com/in/claudionor-coelho-jr-b156b01/)
+
+Fabricio Ceolin (https://br.linkedin.com/in/fabceolin)
+
+Luiza N. Coelho (https://www.linkedin.com/in/luiza-coelho-08499112a/)
 
 
 
