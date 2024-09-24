@@ -199,6 +199,7 @@ Claudionor N. Coelho Jr (https://www.linkedin.com/in/claudionor-coelho-jr-b156b0
 Fabricio Ceolin (https://br.linkedin.com/in/fabceolin)
 
 Luiza N. Coelho (https://www.linkedin.com/in/luiza-coelho-08499112a/)
+(looking for a summer internship for summer of 2025 in Business Development, Economics, Marketing)
 
 
 
