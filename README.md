@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 ### 2. Installation of PANDOC
 
-You need to install PANDOC. As pointed out by Charles Ferreira Gonçalves, on the mac, you can do it by executing the following command.
+You need to install PANDOC. As pointed out by Charles Ferreira Gonçalves, in macos, you can do it by executing the following command.
 
 ```shell
 brew instal pandoc
