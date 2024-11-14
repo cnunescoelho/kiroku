@@ -9,8 +9,7 @@ import urllib.request
 from typing import Any, Dict, Iterator, List
 
 from langchain_core.documents import Document
-from langchain_core.pydantic_v1 import BaseModel, root_validator
-
+from pydantic import BaseModel, model_validator
 
 class PubMedAPIWrapper(BaseModel):
     """
@@ -48,7 +47,8 @@ class PubMedAPIWrapper(BaseModel):
     doc_content_chars_max: int = 2000
     email: str = "your_email@example.com"
 
-    @root_validator()
+    @model_validator(mode="before")
+    @classmethod
     def validate_environment(cls, values: Dict) -> Dict:
         """Validate that the python package exists in environment."""
         try:

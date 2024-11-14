@@ -3,7 +3,7 @@
 import json
 import re
 from langchain_core.messages import AnyMessage, SystemMessage, HumanMessage, AIMessage, ChatMessage
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from typing import TypedDict, List, Set
 
 from .gen_citations import insert_references
@@ -236,7 +236,7 @@ class InternetSearch(State):
             if result[:7] == "```json":
                 result = result.split('\n')
                 result = '\n'.join(result[1:-1])
-            content = state['content'] or []
+            content = state.get('content', [])
             try:
                 queries = json.loads(result)
                 break
@@ -369,8 +369,8 @@ class PaperWriter(State):
         :param state: current state of the agent.
         :return: field 'draft' and 'revision_number' added to the paper.
         '''
-        content = "\n\n".join(state['content'] or [])
-        critique = state['critique'] or ""
+        content = "\n\n".join(state.get('content', []))
+        critique = state.get('critique', '')
         review_instructions = state.get("review_instructions", [])
         task = state["task"]
         sentences_per_paragraph = state["sentences_per_paragraph"]
@@ -535,7 +535,7 @@ class ReflectionCritiqueReviewer(State):
             queries = json.loads(result)
         except:
             logging.warning(f"state {self.name}: could not extract query {result}.")
-        content = state['content'] or []
+        content = state.get('content', [])
         if queries["queries"]:
             search, cache = search_query_ideas(
                 query_ideas=queries, cache=state.get("cache", set()))
