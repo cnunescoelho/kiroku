@@ -48,7 +48,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-#Installation of PANDOC
+### 2. Installation of PANDOC
 
 You need to install PANDOC. As pointed out by Charles Ferreira Gonçalves, on the mac, you can do it by executing the following command.
 
