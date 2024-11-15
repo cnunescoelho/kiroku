@@ -1,3 +1,2 @@
 #!bash
-
 python kiroku_app.py

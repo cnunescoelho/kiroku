@@ -267,7 +267,8 @@ class DocumentWriter:
         )
 
 class KirokuUI:
-    def __init__(self):
+    def __init__(self, working_dir):
+        self.working_dir = working_dir
         self.first = True
         self.next_state = -1
         self.references = []
@@ -408,7 +409,7 @@ class KirokuUI:
         :return: State that was read and make input non-interactive.
         """
         pwd = os.getcwd()
-        logging.warning(f"Using working directory {pwd}")
+        logging.warning(f"Setting working directory to {pwd}")
         self.filename = pwd + "/" + filename.split('/')[-1]
         self.state_values = self.read_initial_state(filename)
         if self.state_values:
@@ -561,23 +562,26 @@ class KirokuUI:
                 [markdown, out, submit_ref_list])
 
     def launch_ui(self):
-        working_dir = os.environ.get("KIROKU_PROJECT_DIRECTORY", os.getcwd())
+        logging.warning(f"... using KIROKU_PROJECT_DIRECTORY working directory of {self.working_dir}")
         try:
-            os.chdir(working_dir)
+            os.chdir(self.working_dir)
         except:
-            logging.warning(f"... directory {working_dir} does not exist")
-            os.mkdir(working_dir)
-        self.images = working_dir + "/images"
+            logging.warning(f"... directory {self.working_dir} does not exist")
+            os.mkdir(self.working_dir)
+        self.images = self.working_dir + "/images"
         logging.warning(
-            f"... using directory {working_dir}/images to store images")
+            f"... using directory {self.working_dir}/images to store images")
         try:
             os.mkdir(self.images)
         except:
             pass
-        self.kiroku_agent.launch(allowed_paths=[self.images])
+        self.kiroku_agent.launch(server_name='localhost') #allowed_paths=[working_dir])
 
 def run():
-    kiroku = KirokuUI()
+    working_dir = os.environ.get("KIROKU_PROJECT_DIRECTORY", os.getcwd())
+    # need this to allow images to be in a different directory
+    gr.set_static_paths(paths=[working_dir + '/images'])
+    kiroku = KirokuUI(working_dir)
     kiroku.create_ui()
     kiroku.launch_ui()
 

@@ -22,11 +22,6 @@ from .prompts import (
 )
 from .search import *
 
-
-class Queries(BaseModel):
-    queries: List[str] = Field("Plain list of string queries")
-
-
 class AgentState(TypedDict):
     state: str
 
@@ -38,19 +33,19 @@ class AgentState(TypedDict):
     section_names: str
     number_of_paragraphs: str
     results: str
-    references: List[str]
+    references: list[str]
 
     # these are instructions that we save for the topic sentences
     # and paper writing
-    review_topic_sentences: List[str]
-    review_instructions: List[str]
+    review_topic_sentences: list[str]
+    review_instructions: list[str]
 
     task: str
     plan: str
     draft: str
     critique: str
-    cache: Set[str]
-    content: List[str]
+    cache: set[str]
+    content: list[str]
     revision_number: int
     number_of_queries: int
     max_revisions: int
@@ -225,7 +220,7 @@ class InternetSearch(State):
                             INTERNET_SEARCH_PROMPT.format(
                                 number_of_queries=state['number_of_queries']) +
                             " You must only output the response in a plain list of queries "
-                            "in the format '" + Queries().json() + "' and no other text. "
+                            "in the JSON format '{ \"queries\": list[str] }' and no other text. "
                             "You MUST only cite references that are in the references "
                             "section. "
                     )),
@@ -521,8 +516,8 @@ class ReflectionCritiqueReviewer(State):
             SystemMessage(
                 content=(
                         RESEARCH_CRITIQUE_PROMPT +
-                        " You must only output the response " +
-                        "'" + Queries().json() + "' and no other text."
+                        " You must only output the response in the" +
+                        "JSON format '{ \"queries\": list[str] }' and no other text."
                 )),
             HumanMessage(content=state['critique'])
         ]).content
